@@ -12,6 +12,7 @@ class ContactCreate extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     handleChange(e) {
@@ -33,6 +34,14 @@ class ContactCreate extends React.Component {
             name:'',
             phone:''
         });
+
+        this.nameInput.focus();
+    }
+
+    handleKeyPress(e) {
+        if(e.charCode === 13){
+            this.handleClick();
+        }
     }
 
     render(){
@@ -40,8 +49,24 @@ class ContactCreate extends React.Component {
             <div>
                 <h2>Create Contact</h2>
                 <p>
-                    <input type = "text" name = "name" placeholder = "name" value={this.state.name} onChange = {this.handleChange}></input>
-                    <input type = "text" name = "phone" placeholder = "phone" value={this.state.phone} onChange = {this.handleChange}></input>
+                    <input 
+                        type = "text" 
+                        name = "name" 
+                        placeholder = "name" 
+                        value={this.state.name} 
+                        onChange = {this.handleChange}
+                        ref={(ref)=> {this.nameInput = ref}}> 
+                        {/* create 후에도 포커스 name입력칸으로 유지 */}
+                        {/* constructor, render 내에서는 ref 접근 불가 */}
+                    </input>
+                    <input 
+                        type = "text" 
+                        name = "phone" 
+                        placeholder = "phone" 
+                        value={this.state.phone} 
+                        onChange = {this.handleChange} 
+                        onKeyPress = {this.handleKeyPress}>
+                        </input>
                 </p>
                 <button onClick = {this.handleClick}>Create</button>
             </div>
