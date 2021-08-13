@@ -97,7 +97,8 @@ class Contact extends React.Component {
                 <div>{mapToComponents(this.state.contactData)}</div>
                 <ContactDetails 
                     isSelected = {this.state.selectedKey !== -1}
-                    contact = {this.state.contactData[this.state.selectedKey]}/>
+                    contact = {this.state.contactData[this.state.selectedKey]}
+                    onRemove = {this.handleRemove}/>
                 <ContactCreate onCreate = {this.handleCreate}/>
             </div>
         );
